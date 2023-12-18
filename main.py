@@ -10,13 +10,15 @@ torch.set_default_device("cuda")
 import base64
 from io import BytesIO
 
-# Load model
-model = AutoModelForCausalLM.from_pretrained("microsoft/phi-2", torch_dtype="auto", trust_remote_code=True)
-tokenizer = AutoTokenizer.from_pretrained("microsoft/phi-2", trust_remote_code=True)
+# Load text model
+text_model_id = "microsoft/phi-2"
+model = AutoModelForCausalLM.from_pretrained(text_model_id, torch_dtype="auto", trust_remote_code=True)
+tokenizer = AutoTokenizer.from_pretrained(text_model_id, trust_remote_code=True)
 
-
-pipe = StableDiffusionPipeline.from_pretrained("runwayml/stable-diffusion-v1-5", revision="fp16", torch_dtype=torch.float16)
-pipe.to("cuda")
+# Load text model
+image_model_id = "runwayml/stable-diffusion-v1-5"
+pipe = StableDiffusionPipeline.from_pretrained(image_model_id, torch_dtype=torch.float16)
+pipe = pipe.to("cuda")
 
 # Start flask app and set to ngrok
 app = Flask(__name__)
