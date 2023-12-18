@@ -9,8 +9,9 @@ import base64
 from io import BytesIO
 
 # Load model
-tokenizer = T5Tokenizer.from_pretrained("microsoft/phi-2")
-model = T5ForConditionalGeneration.from_pretrained("microsoft/phi-2").to("cuda")
+model = AutoModelForCausalLM.from_pretrained("microsoft/phi-2", torch_dtype="auto", trust_remote_code=True)
+tokenizer = AutoTokenizer.from_pretrained("microsoft/phi-2", trust_remote_code=True)
+
 
 pipe = StableDiffusionPipeline.from_pretrained("runwayml/stable-diffusion-v1-5", revision="fp16", torch_dtype=torch.float16)
 pipe.to("cuda")
