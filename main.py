@@ -3,7 +3,9 @@ from flask import Flask, render_template, request
 
 import torch
 from diffusers import StableDiffusionPipeline
-from transformers import T5Tokenizer, T5ForConditionalGeneration
+from transformers import AutoModelForCausalLM, AutoTokenizer
+
+torch.set_default_device("cuda")
 
 import base64
 from io import BytesIO
