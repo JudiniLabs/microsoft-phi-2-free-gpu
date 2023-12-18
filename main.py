@@ -9,8 +9,8 @@ import base64
 from io import BytesIO
 
 # Load model
-tokenizer = T5Tokenizer.from_pretrained("google/flan-t5-xl")
-model = T5ForConditionalGeneration.from_pretrained("google/flan-t5-xl").to("cuda")
+tokenizer = T5Tokenizer.from_pretrained("microsoft/phi-2")
+model = T5ForConditionalGeneration.from_pretrained("microsoft/phi-2").to("cuda")
 
 pipe = StableDiffusionPipeline.from_pretrained("runwayml/stable-diffusion-v1-5", revision="fp16", torch_dtype=torch.float16)
 pipe.to("cuda")
