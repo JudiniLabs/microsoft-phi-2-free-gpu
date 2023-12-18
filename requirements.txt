@@ -9,3 +9,4 @@ ftfy
 accelerate
 pyngrok==4.1.1
 flask_ngrok
+einops
